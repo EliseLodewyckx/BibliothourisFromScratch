@@ -5,6 +5,8 @@ import javax.inject.Named;
 import java.util.Iterator;
 import java.util.concurrent.atomic.AtomicLong;
 
+import static java.util.UUID.randomUUID;
+
 @Named
 public class BookService {
 
@@ -14,10 +16,14 @@ public class BookService {
     public final AtomicLong counter = new AtomicLong();
 
     public void addBook(String title, String isbn, String authorFirstName, String authorLastName){
-       bookRepositoryDatabase.save(new Book(counter.incrementAndGet(), title, isbn, authorFirstName, authorLastName));
+       bookRepositoryDatabase.save(new Book(randomUUID().toString(), title, isbn, authorFirstName, authorLastName));
     }
 
     public Iterable<Book> getAllBooks(){
         return bookRepositoryDatabase.findAll();
+    }
+
+    public Book findByTitle(String title) {
+        return bookRepositoryDatabase.findByTitle(title);
     }
 }

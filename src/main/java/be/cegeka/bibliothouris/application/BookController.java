@@ -22,6 +22,11 @@ public class BookController {
     @ResponseBody
     Iterable<Book> getBooks(){return bookService.getAllBooks();}
 
+    @RequestMapping(path ="/find", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    Book findByTitle(@RequestParam(value = "title") String title){return bookService.findByTitle(title);}
+
     @RequestMapping(method = RequestMethod.POST)
     public
     @ResponseBody
@@ -32,7 +37,4 @@ public class BookController {
                  )
 
     {bookService.addBook(title, isbn, authorFirstName, authorLastName);}
-
 }
-
-

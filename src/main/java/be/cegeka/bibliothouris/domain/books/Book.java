@@ -1,30 +1,45 @@
 package be.cegeka.bibliothouris.domain.books;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
 public class Book {
     @Id
-    private long id;
+    @Column(name = "book")
+    private String bookID;
+
+    @Column(name = "title")
     private String title;
+
+    @Column(name = "ISBN")
     private String ISBN;
+
+    @Column(name = "authorFirstName")
     private String authorFirstName;
+
+    @Column(name = "authorLastName")
     private String authorLastName;
 
-    public Book(long id,String title, String isbn, String authorFirstName, String authorLastName){
-        this.id = id;
+    public Book(String id,String title, String isbn, String authorFirstName, String authorLastName){
+        this.bookID = id;
         this.title = title;
         this.ISBN = isbn;
         this.authorFirstName = authorFirstName;
         this.authorLastName = authorLastName;
     }
+
+    public Book(String id, String title){
+        this.bookID = id;
+        this.title = title;
+    }
     public Book(){
 
     }
 
-    public long getId() {
-        return id;
+    public String getBookID() {
+        return bookID;
     }
 
     public String getTitle() {
